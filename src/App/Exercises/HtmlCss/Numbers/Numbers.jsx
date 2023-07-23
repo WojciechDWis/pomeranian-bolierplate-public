@@ -101,7 +101,7 @@ export function Numbers() {
   // Math.max() - wywołaj metodę odpowiedzialną za wyszukanie największej liczby
   console.log(Math.max(12, 15, 5, 6));
 
-  // Math.random() - wywołaj metodę odpowiedzialną za wyszukanie największej liczby
+  // Math.random() - wywołaj metodę odpowiedzialną za wyszukanie randomowej liczby
   console.log(Math.random());
 
   return (
