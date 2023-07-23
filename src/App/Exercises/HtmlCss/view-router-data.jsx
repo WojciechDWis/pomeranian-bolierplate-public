@@ -18,6 +18,7 @@ import { blockRouterMetaData as FloatsAndPositioningExercises } from './FloatsAn
 import { blockRouterMetaData as MaterialUIBasicElements } from './ReactExercises/router-data';
 import { blockRouterMetaData as Boolean } from './Boolean/router-data';
 import { blockRouterMetaData as IFSwitch } from './IfSwitch/router-data';
+import { blockRouterMetaData as Numbers } from './Numbers/router-data';
 
 export const blockRouterMetaData = [
     blockRouterMetaData121220231,
@@ -38,5 +39,6 @@ export const blockRouterMetaData = [
     MaterialUIBasicElements,
     Boolean,
     IFSwitch,
+    Numbers,
 ];
 export const blockRouterData = getParsedRouterDataList(blockRouterMetaData);
