@@ -5,6 +5,12 @@ import { blockRouterMetaData as blockRouterMetaDataJsVariables2 } from './Exerci
 import { blockRouterMetaData as blockRouterMetaDataJsFunction1 } from './Exercise-js-functions/router-data';
 import { blockRouterMetaData as NumbersAndBoolean } from './JsNumbersTraning/router-data';
 import { blockRouterMetaData as EmptyValueAndComments } from './EmptyValuesAndComments/router-data';
+import { blockRouterMetaData as JsArrays } from './JsArraysBasics/router-data';
+import { blockRouterMetaData as JsArrayMethodsExercise } from './JsArrayMethodsExercise/router-data';
+import { blockRouterMetaData as JsStringsAsArrays } from './JsStringsAsArrays/router-data';
+import { blockRouterMetaData as JsObjectsBasics } from './JsObjectsBasics/router-data';
+import { blockRouterMetaData as JsDateTime } from './JsDateTime/router-data';
+import { blockRouterMetaData as JsFunctionBasics } from './JsFunctionsBasics/router-data';
 
 export const blockRouterMetaData = [
   blockRouterMetaDataJsVariables1,
@@ -12,5 +18,11 @@ export const blockRouterMetaData = [
   blockRouterMetaDataJsFunction1,
   NumbersAndBoolean,
   EmptyValueAndComments,
+  JsArrays,
+  JsArrayMethodsExercise,
+  JsStringsAsArrays,
+  JsObjectsBasics,
+  JsDateTime,
+  JsFunctionBasics,
 ];
 export const blockRouterData = getParsedRouterDataList(blockRouterMetaData);
