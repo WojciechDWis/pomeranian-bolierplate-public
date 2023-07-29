@@ -1,8 +1,34 @@
 import './styles.css';
 
-export const JsFunctionBasics = () => {
-  return <div>Change me X</div>;
-};
+function multiplyBy(factor = 1, ...rest) {
+  return rest.map((number) => number * factor).join(',');
+}
+
+function tags(...tags) {
+  return tags.join(',');
+}
+
+export function JsFunctionBasics(obj) {
+  return (
+    <>
+      <div>{multiplyBy(obj.factor, obj.x, 3, 4, 5)}</div>
+      <div>{tags(3, 'tags', 8, 'js', JSON.stringify({ foo: 'bar' }))}</div>
+    </>
+  );
+}
+
+export function Exercise() {
+  const props = {
+    factor: 5,
+    x: 10,
+  };
+
+  return (
+    <>
+      <JsFunctionBasics factor={5} x={10} {...props} />
+    </>
+  );
+}
 
 //funkcja nazwana
 function f1() { }
