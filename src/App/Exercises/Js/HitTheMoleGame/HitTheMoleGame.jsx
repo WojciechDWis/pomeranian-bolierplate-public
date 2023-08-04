@@ -2,12 +2,15 @@ import './styles.css';
 import { MasterHeader } from '../../../Components/MasterHeader';
 import { Lable, Button, Output, Result, Tile } from './Components';
 import { useState, useEffect } from 'react';
+import { formatTime } from './Utils';
+import { getNewMolePosition } from './Utils';
 
-const MINUTE = 60000; //1 minuta w ms
+const MINUTE = 6000; //1 minuta w ms
+const HIGHLIGHT_TIME = 500;
 const DURATIONS = [
-  { label: '1 minuta', duration: MINUTE },
-  { label: '2 minuty', duration: MINUTE * 2 },
-  { label: '3 minuty', duration: MINUTE * 3 },
+  { label: '1 minuta', duration: MINUTE + 100 },
+  { label: '2 minuty', duration: MINUTE * 2 + 100 },
+  { label: '3 minuty', duration: MINUTE * 3 + 100 },
 ];
 
 const MOLES = [
@@ -18,60 +21,93 @@ const MOLES = [
 
 export const HitTheMole = () => {
   const [duration, setDuration] = useState();
-  const [molesNo, setMolesNo] = useState();
+  const [prevDuration, setPrevDuration] = useState();
+  const [molesOption, setMolesOption] = useState();
+  const [molePosition, setMolePosition] = useState();
   const [status, setStatus] = useState('notStarted');
   const [timeLeft, setTimeLeft] = useState();
   const [score, setScore] = useState();
   const [showWarning, setShowWarning] = useState(false);
   const [tiles, setTiles] = useState([]);
+  const [intervalId, setIntervalId] = useState();
+  const [correct, setCorrect] = useState();
+  const [incorrect, setIncorrect] = useState();
+
+  function startCountdown() {
+    const id = setInterval(() => setTimeLeft((prev) => prev - 100), 100);
+    setIntervalId(id);
+  }
 
   useEffect(() => {
-    console.log('Status się zmienił', status);
-    if (status === 'notStarted') {
-      setTimeLeft(0);
+    if (timeLeft <= 0) {
+      clearInterval(intervalId);
+      setStatus('finished');
+      setDuration(undefined);
+      setMolesOption(undefined);
     }
-    if (status === 'started') {
-      setTimeLeft(duration);
-      setTiles(getInitialTiles(molesNo));
-    }
-    if (status !== 'finished') {
-      setScore(0);
-    }
-  }, [status, duration, molesNo]);
+  }, [intervalId, timeLeft]);
 
-  function getInitialTiles(molesNumber) {
-    const tiles = MOLES.find((mole) => mole.molesNo === molesNumber).tiles;
-    return Array(tiles).fill(0);
-  }
-
-  function formatTime(time) {
-    const timeInSeconds = Math.round(time / 1000);
-    const timeInMinutes = Math.round(timeInSeconds / 60)
-      .toString()
-      .padStart(2, '0');
-    const seconds = Math.round(timeInSeconds % 60)
-      .toString()
-      .padStart(2, '0');
-    return `${timeInMinutes}:${seconds}`;
-  }
-
-  function settingsValidation() {
-    if (duration > 0 && molesNo > 0) {
-      return false;
-    } else {
-      return true;
+  useEffect(() => {
+    let timeoutId;
+    if (correct !== undefined) {
+      timeoutId = setTimeout(() => setCorrect(undefined), HIGHLIGHT_TIME);
     }
+    return () => clearTimeout(timeoutId);
+  }, [correct]);
+
+  useEffect(() => {
+    let timeoutId;
+    if (incorrect !== undefined) {
+      timeoutId = setTimeout(() => setIncorrect(undefined), HIGHLIGHT_TIME);
+    }
+    return () => clearTimeout(timeoutId);
+  }, [incorrect]);
+
+  function getInitialTiles(molesOption) {
+    return Array(molesOption.tiles)
+      .fill(0)
+      .map((tile, index) => ({ index }));
   }
 
   function handleStart() {
-    const validation = settingsValidation();
-    if (validation === false) {
+    if (duration && molesOption) {
       setStatus('started');
       setShowWarning(false);
+      setTimeLeft(duration);
+      setPrevDuration(duration);
+      setTiles(getInitialTiles(molesOption));
+      setScore(0);
+      startCountdown();
+      setMolePosition(getNewMolePosition(molePosition, molesOption.tiles));
     } else {
       setShowWarning(true);
     }
   }
+
+  function handleStop() {
+    setStatus('notStarted');
+    clearInterval(intervalId);
+    setDuration(undefined);
+    setMolesOption(undefined);
+  }
+
+  function handleTileClick(index) {
+    if (molePosition === index) {
+      setScore((prev) => prev + 1);
+      setCorrect(index);
+      setMolePosition(getNewMolePosition(index, molesOption.tiles));
+    } else {
+      setIncorrect(index);
+      setScore((prev) => prev - 1);
+    }
+  }
+
+  function getTileVariant(index) {
+    if (index === correct) return 'correct';
+    if (index === incorrect) return 'incorrect';
+    return 'neutral';
+  }
+
   return (
     <div>
       <MasterHeader value="Kret" />
@@ -81,12 +117,12 @@ export const HitTheMole = () => {
       </p>
       {showWarning && <p className="mole-warning">Brakuje ustawień gry</p>}
       {status === 'finished' && (
-        <Result duration={formatTime(duration)} score={score} />
+        <Result duration={formatTime(prevDuration)} score={score} />
       )}
       <p>
         {' '}
-        duration: {duration}, Moles Number: {molesNo}, Status: {status},
-        timeLeft:{timeLeft}, Tiles: {JSON.stringify(tiles)}
+        duration: {duration}, Moles Number: {molesOption && molesOption.molesNo}
+        , Status: {status}, timeLeft:{timeLeft}, Tiles: {JSON.stringify(tiles)}
       </p>
       {status !== 'started' && (
         <>
@@ -108,9 +144,14 @@ export const HitTheMole = () => {
               <Button
                 key={item.label}
                 value={item.label}
-                variant={item.molesNo !== molesNo ? 'primary' : 'secondary'}
+                variant={
+                  molesOption &&
+                  (item.molesNo !== molesOption.molesNo
+                    ? 'primary'
+                    : 'secondary')
+                }
                 onClick={() => {
-                  setMolesNo(item.molesNo);
+                  setMolesOption(item);
                 }}
               />
             ))}
@@ -133,19 +174,21 @@ export const HitTheMole = () => {
           </div>
           <div>
             <Lable value="PRZYCISKI STERUJĄCE" />
-            <Button
-              value={'STOP'}
-              onClick={() => setStatus('notStarted')}
-              variant="tertiary"
-            />
+            <Button value={'STOP'} onClick={handleStop} variant="tertiary" />
           </div>
           <div>
-            <Tile hasMole />
-            <Tile hasMole />
-            <Tile hasMole />
-            <Tile hasMole variant="correct" />
-            <Tile hasMole variant="incorrect" />
-            <Tile hasMole variant="neutral" />
+            {status === 'started' && (
+              <div className="mole-board">
+                {tiles.map(({ index }) => (
+                  <Tile
+                    key={index}
+                    onClick={() => handleTileClick(index)}
+                    hasMole={index === molePosition}
+                    variant={getTileVariant(index)}
+                  />
+                ))}
+              </div>
+            )}
           </div>
         </>
       )}

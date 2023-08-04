@@ -10,7 +10,7 @@ export const Button = ({ value, variant = 'primary', onClick }) => {
       variant === 'tertiary'
     )
   )
-    console.warn('błędny parametr variant', variant);
+    console.warn('Button: błędny parametr variant', variant);
   return (
     <button className={`mole-button mole-button--${variant}`} onClick={onClick}>
       {value}

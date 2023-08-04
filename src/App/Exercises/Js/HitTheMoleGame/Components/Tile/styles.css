@@ -3,6 +3,7 @@
     width: 6.5rem;
     height: 6.5rem;
     flex-shrink: 0;
+    cursor: pointer;
 }
 
 .mole-tile--neutral {
