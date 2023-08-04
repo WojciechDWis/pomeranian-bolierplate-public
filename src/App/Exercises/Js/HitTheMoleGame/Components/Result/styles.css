@@ -1,0 +1,17 @@
+.mole-output {
+    display: flex;
+    height: 3.5rem;
+    padding: 1.25rem 2.25rem;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    flex: 1 0 0;
+
+    border-radius: 0.5rem;
+    border: 1px solid var(--gray-200, #EBEBEB);
+    background: var(--gray-200, #EBEBEB);
+
+    display: flex;
+    width: 10.1875rem;
+    align-items: flex-start;
+}

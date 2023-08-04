@@ -19,6 +19,7 @@ import { blockRouterMetaData as VanishString } from './VanishString/router-data'
 import { blockRouterMetaData as Timer } from './Timer/router-data';
 import { blockRouterMetaData as SlidingBanner } from './SlidingBanner/router-data';
 import { blockRouterMetaData as JsAnimation } from './JsAnimation/router-data';
+import { blockRouterMetaData as HitTheMole } from './HitTheMoleGame/router-data';
 
 export const blockRouterMetaData = [
   blockRouterMetaDataJsVariables1,
@@ -40,5 +41,6 @@ export const blockRouterMetaData = [
   Timer,
   SlidingBanner,
   JsAnimation,
+  HitTheMole,
 ];
 export const blockRouterData = getParsedRouterDataList(blockRouterMetaData);

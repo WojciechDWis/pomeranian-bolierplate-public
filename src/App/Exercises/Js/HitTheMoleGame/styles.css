@@ -1,0 +1,25 @@
+.time-buttons {
+    display: flex;
+    flex-direction: row;
+    gap: 1.5rem;
+    align-self: flex-start;
+    flex-grow: 1;
+    margin-bottom: 2rem;
+    width: 40rem;
+
+}
+
+.moles-buttons {
+    display: flex;
+    flex-direction: row;
+    gap: 1.5rem;
+    align-self: flex-start;
+    flex-grow: 1;
+    margin-bottom: 2rem;
+    width: 40rem;
+}
+
+.mole-warning {
+    color: red;
+    font-size: 2rem;
+}
