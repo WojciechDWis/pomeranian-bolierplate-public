@@ -48,6 +48,21 @@ export const HitTheMole = () => {
   }, [intervalId, timeLeft]);
 
   useEffect(() => {
+    if (molePosition === undefined) return;
+    let timeoutId;
+    //console.timeEnd('mole-position');
+    //console.time('mole-position');
+    if (molePosition !== undefined) {
+      timeoutId = setTimeout(
+        () =>
+          setMolePosition(getNewMolePosition(molePosition, molesOption.tiles)),
+        molePosition.timeVisible
+      );
+    }
+    return () => clearTimeout(timeoutId);
+  }, [molePosition, molesOption]);
+
+  useEffect(() => {
     let timeoutId;
     if (correct !== undefined) {
       timeoutId = setTimeout(() => setCorrect(undefined), HIGHLIGHT_TIME);
