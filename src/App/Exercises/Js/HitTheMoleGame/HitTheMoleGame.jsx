@@ -14,7 +14,7 @@ const DURATIONS = [
 ];
 
 const MOLES = [
-  { label: '1 kret', molesNo: 1, tiles: 10, timeVisible: 10000 },
+  { label: '1 kret', molesNo: 1, tiles: 10, timeVisible: 500 },
   { label: '2 krety', molesNo: 2, tiles: 15, timeVisible: 500 },
   { label: '3 krety', molesNo: 3, tiles: 20, timeVisible: 350 },
 ];
@@ -48,7 +48,7 @@ export const HitTheMole = () => {
   }, [intervalId, timeLeft]);
 
   useEffect(() => {
-    if (molePosition === undefined) return;
+    if (molesOption === undefined) return;
     let timeoutId;
     //console.timeEnd('mole-position');
     //console.time('mole-position');
@@ -56,7 +56,7 @@ export const HitTheMole = () => {
       timeoutId = setTimeout(
         () =>
           setMolePosition(getNewMolePosition(molePosition, molesOption.tiles)),
-        molePosition.timeVisible
+        molesOption.timeVisible
       );
     }
     return () => clearTimeout(timeoutId);
