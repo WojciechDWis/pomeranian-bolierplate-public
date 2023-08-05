@@ -1,0 +1,9 @@
+.memo-label {
+    font-family: Poppins;
+    font-size: 1.125rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 2.125rem;
+    text-transform: uppercase;
+    flex-basis: 12rem;
+}

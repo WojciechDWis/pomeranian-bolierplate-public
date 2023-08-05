@@ -25,9 +25,7 @@ export const HitTheMole = () => {
   const [duration, setDuration] = useState();
   const [prevDuration, setPrevDuration] = useState();
   const [molesOption, setMolesOption] = useState();
-
   const [status, setStatus] = useState('notStarted');
-
   const [score, setScore] = useState();
   const [showWarning, setShowWarning] = useState(false);
   const [tiles, setTiles] = useState([]);
