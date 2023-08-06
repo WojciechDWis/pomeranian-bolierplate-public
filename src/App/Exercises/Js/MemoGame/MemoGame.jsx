@@ -22,7 +22,6 @@ export const MemoGame = () => {
     const [time, setTime] = useState(0);
     const [score, setScore] = useState(0);
     const [found, setFound] = useState(0);
-    const [resultMessage, setResultMessage] = useState();
     const [firstClick, setFirstClick] = useState();
     const [secondClick, setSecondClick] = useState();
 
@@ -42,6 +41,7 @@ export const MemoGame = () => {
             setStatus('started');
             setShowWarning(false);
             setTiles(getInitialTiles(noOfElements));
+            setPrevNoOfElements(noOfElements);
             setScore(0);
             setTime(0);
             setFound(0);
@@ -52,7 +52,6 @@ export const MemoGame = () => {
     function handlePass() {
         setStatus('passed');
         setNoOfElements(undefined);
-        setPrevNoOfElements(noOfElements);
     }
 
     function handleTileClicked(index) {
