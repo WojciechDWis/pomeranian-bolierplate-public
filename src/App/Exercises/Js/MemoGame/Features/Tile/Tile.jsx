@@ -1,20 +1,17 @@
 import './styles.css';
 
-export const Tile = ({ hasMemo, variant = 'neutral', onClick, value }) => {
+export const Tile = ({ isVisible, variant = 'neutral', onClick, value }) => {
   // eslint-disable-next-line prettier/prettier
 
   if (
     !(variant === 'correct' || variant === 'incorrect' || variant === 'neutral')
   )
     console.warn('tile: błędny parametr variant', variant);
-  let memoClass = '';
-  if (hasMemo) memoClass = 'memo-tile--has-memo';
+  let isVisibleClass = '';
+  if (isVisible) isVisibleClass = 'memo-letter--is-visible';
   return (
-    <button
-      className={`memo-tile memo-tile--${variant} ${memoClass}`}
-      onClick={onClick}
-    >
-      {value}
-    </button>
+    <div className={`memo-tile memo-tile--${variant}`} onClick={onClick}>
+      <div className={`memo-letter ${isVisibleClass}`}>{value}</div>
+    </div>
   );
 };

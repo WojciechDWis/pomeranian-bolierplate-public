@@ -2,8 +2,8 @@
     border-radius: 0.5rem;
     width: 6.5rem;
     height: 6.5rem;
-    flex-shrink: 0;
     cursor: pointer;
+    /* transform: scale(0); */
 }
 
 .memo-tile--neutral {
@@ -18,9 +18,17 @@
     background: #F3AEA8;
 }
 
-.memo-tile--has-mole {
+.memo-letter {
+    user-select: none;
+    transform: scaleX(0);
+    transition: 300ms;
+    font-size: 5rem;
+    text-align: center;
+    line-height: 6.5rem;
+}
 
-    background-image: url("./mole.svg");
-    background-repeat: no-repeat;
-    background-position: center;
+.memo-letter--is-visible {
+    transform: scale(1);
+    /* background-repeat: no-repeat; */
+    /* background-position: center; */
 }
