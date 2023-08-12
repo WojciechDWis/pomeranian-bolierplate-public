@@ -1,24 +1,56 @@
-import { Button } from '../../Components';
+import { Button } from '../../Components/Button/Button';
 import { useState } from 'react';
 import './styles.css';
 
-export function HighScore(props) {
-  const [score, time] = props;
+const TYPE_OF_GAME_HIGHSCORE_4 = 4;
+const TYPE_OF_GAME_HIGHSCORE_16 = 16;
+const TYPE_OF_GAME_HIGHSCORE_20 = 20;
+
+const extractSpecificHighScore = (paramHighScores, paramNoOfElements) => {
+  return paramHighScores?.[paramNoOfElements]?.record?.toFixed(2);
+};
+
+export function HighScore({
+  highScores,
+  calculatedScore,
+  noOfElements,
+  isVisibleRecord,
+}) {
   const [isVisible, setIsVisible] = useState(false);
+
   return (
     <div className="memo-high-score">
       <div className="memo-congrats">
-        Gratulacje pobiłeś rekord twoje punkty to 60 x {score} / {time} czas w
-        sekundach - XX poprzedni rekord to YY
+        {isVisibleRecord &&
+          `Gratulacje pobiłeś rekord twoje punkty to ${calculatedScore?.toFixed(
+            2
+          )},
+        poprzedni rekord to: ${HighScore?.[noOfElements]?.record?.toFixed(2)}`}
       </div>
-      <div>
-        <Button
-          value={isVisible ? 'Hide High Score' : 'Show High Score'}
-          variant={isVisible ? 'primary' : 'secondary'}
-          onClick={() => setIsVisible((prev) => !prev)}
-        ></Button>
-        {isVisible && <div>High Score List</div>}
-      </div>
+      <Button
+        value={isVisible ? 'Hide High Score' : 'Show High Score'}
+        variant={isVisible ? 'primary' : 'secondary'}
+        onClick={() => setIsVisible((prev) => !prev)}
+      />
+      {isVisible && (
+        <div className="memo-high-score">
+          High Score List:
+          <ul>
+            <li>
+              High Score for 4 tiles game:{' '}
+              {extractSpecificHighScore(highScores, TYPE_OF_GAME_HIGHSCORE_4)}
+            </li>
+            <li>
+              High Score for 16 tiles game:{' '}
+              {extractSpecificHighScore(highScores, TYPE_OF_GAME_HIGHSCORE_16)}
+            </li>
+            <li>
+              High Score for 20 tiles game:{' '}
+              {extractSpecificHighScore(highScores, TYPE_OF_GAME_HIGHSCORE_20)}
+            </li>
+          </ul>
+        </div>
+      )}
     </div>
   );
 }

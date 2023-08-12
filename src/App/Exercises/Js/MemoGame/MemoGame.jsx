@@ -7,7 +7,7 @@ import { HighScore } from './Features/HighScore/HighScore';
 import './styles.css';
 
 const ELEMENTS = [4, 16, 20];
-const LETTERS = [...'ABCDEFGHIJ'];
+//const LETTERS = [...'ABCDEFGHIJ'];
 const characters = getAlphabet(10);
 
 export const MemoGame = () => {
@@ -21,6 +21,37 @@ export const MemoGame = () => {
   const [found, setFound] = useState(0);
   const [firstClick, setFirstClick] = useState();
   const [secondClick, setSecondClick] = useState();
+  const [getCalculatedScore, setCalculatedScore] = useState(null);
+  const [getIsVisibleRecord, setIsVisibleRecord] = useState(null);
+
+  const [gethighScores, setHighScores] = useState({
+    4: { record: 0, moves: 0, time: 0 },
+    16: { record: 0, moves: 0, time: 0 },
+    20: { record: 0, moves: 0, time: 0 },
+  });
+
+  useEffect(() => {
+    if (status === 'finished' && prevNoOfElements === noOfElements) {
+      const currentMoves = score;
+      const currentTime = time;
+      const currentRecord = (60 * currentMoves) / currentTime;
+
+      if (currentRecord > gethighScores?.[noOfElements]?.record) {
+        setIsVisibleRecord(
+          currentRecord > gethighScores?.[noOfElements]?.record
+        );
+        const updatedHighScores = {
+          ...gethighScores,
+          [noOfElements]: {
+            record: currentRecord,
+            moves: currentMoves,
+            time: currentTime,
+          },
+        };
+        setHighScores(updatedHighScores);
+      }
+    }
+  }, [status, prevNoOfElements, noOfElements, score, time, gethighScores]);
 
   function getInitialTiles(size) {
     const charactersSubset = characters.slice(0, size / 2);
@@ -38,6 +69,7 @@ export const MemoGame = () => {
     if (noOfElements !== undefined) {
       setStatus('started');
       setShowWarning(false);
+      setCalculatedScore(null);
       setTiles(getInitialTiles(noOfElements));
       setPrevNoOfElements(noOfElements);
       setScore(0);
@@ -83,6 +115,7 @@ export const MemoGame = () => {
   useEffect(() => {
     if (firstClick !== undefined && secondClick !== undefined) {
       setScore((prev) => prev + 1);
+      setCalculatedScore((60 * score) / time);
       setTiles((oldTiles) => {
         const newTiles = [...oldTiles];
         const first = newTiles[firstClick];
@@ -154,8 +187,12 @@ export const MemoGame = () => {
       {showWarning && <p className="memo-warning">Brakuje ustawień gry</p>}
       {status === 'finished' && (
         <>
-          <Result>Gratulację! Twój wynik to {score} par w czasie 0:56!</Result>
-          <HighScore score={score} time={time} />
+          <Result>Gratulację! Twój wynik to {score} par w czasie </Result>
+          <HighScore
+            highScores={gethighScores}
+            calculatedScore={getCalculatedScore}
+            noOfElements={noOfElements}
+          />
         </>
       )}
 
@@ -210,6 +247,7 @@ export const MemoGame = () => {
               onClick={() => handleTileClicked(index)}
               isVisible={isVisible}
               variant={variant}
+              isVisibleRecord={getIsVisibleRecord}
             />
           ))}
         </div>
