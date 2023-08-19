@@ -24,6 +24,9 @@ import { blockRouterMetaData as MemoGame } from './MemoGame/router-data';
 import { blockRouterMetaData as OOP } from './OOP/router-data';
 import { blockRouterMetaData as TryCatchPrototype } from './TryCatchPrototype/router-data';
 import { blockRouterMetaData as JSON } from './json_xml_storage/router-data';
+import { blockRouterMetaData as SavedInput } from './SavedInput/router-data';
+import { blockRouterMetaData as Promises } from './Promises/router-data';
+import { blockRouterMetaData as asyncAwait } from './asyncAwaitExercise/router-data';
 
 export const blockRouterMetaData = [
   blockRouterMetaDataJsVariables1,
@@ -50,5 +53,8 @@ export const blockRouterMetaData = [
   OOP,
   TryCatchPrototype,
   JSON,
+  SavedInput,
+  Promises,
+  asyncAwait,
 ];
 export const blockRouterData = getParsedRouterDataList(blockRouterMetaData);

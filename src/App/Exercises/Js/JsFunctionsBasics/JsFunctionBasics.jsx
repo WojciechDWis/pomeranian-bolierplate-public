@@ -31,7 +31,7 @@ export function Exercise() {
 }
 
 //funkcja nazwana
-function f1() { }
+function f1() {}
 
 const x = f1();
 
@@ -44,8 +44,8 @@ const f2 = () => {
 };
 const f3 = () => ({ foo: 'bar' });
 
-f1(function () { });
-f2(() => { });
+f1(function () {});
+f2(() => {});
 
 const multiplyBy2 = (number) => {
   if (number === undefined) {
@@ -62,7 +62,7 @@ multiplyBy2();
 
 function funkcjaZewnętrzna() {
   function funkcjaWewnętrzna() {
-    debugger;
+    //debugger;
     console.log('To jest funkcja wewnętrzna');
   }
   return funkcjaWewnętrzna;
