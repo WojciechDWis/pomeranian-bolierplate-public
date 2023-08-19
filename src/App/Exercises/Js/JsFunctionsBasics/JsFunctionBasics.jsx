@@ -63,7 +63,7 @@ multiplyBy2();
 function funkcjaZewnętrzna() {
   function funkcjaWewnętrzna() {
     //debugger;
-    console.log('To jest funkcja wewnętrzna');
+    //console.log('To jest funkcja wewnętrzna');
   }
   return funkcjaWewnętrzna;
 }
