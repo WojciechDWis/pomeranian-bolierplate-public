@@ -1,0 +1,19 @@
+.todo-form {
+    width: 100%;
+    max-width: 30.5rem;
+}
+
+.todo-form__controls {
+    display: flex;
+    justify-content: flex-end;
+    gap: 1.8125rem;
+}
+
+.todo-form__error {
+    font-weight: 600;
+    color: var(--colors-actions-danger, #E12B1B);
+font-feature-settings: 'clig' off, 'liga' off;
+font-family: Poppins;
+font-weight: 600;
+line-height: 1.6875rem; /* 168.75% */
+}

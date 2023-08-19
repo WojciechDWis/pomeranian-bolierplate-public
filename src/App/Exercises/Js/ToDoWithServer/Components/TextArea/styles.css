@@ -1,0 +1,4 @@
+.todo-form__textarea {
+    resize: none;
+    min-height: 8rem;
+}
