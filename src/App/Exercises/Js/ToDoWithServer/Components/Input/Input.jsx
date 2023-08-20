@@ -1,6 +1,6 @@
 import './styles.css';
 
-export function Input({ value, placeholder, id }) {
+export function Input({ onChange, value, placeholder, id }) {
   return (
     <input
       type="text"
@@ -8,6 +8,7 @@ export function Input({ value, placeholder, id }) {
       id={id}
       value={value}
       placeholder={placeholder}
+      onChange={onChange}
     />
   );
 }

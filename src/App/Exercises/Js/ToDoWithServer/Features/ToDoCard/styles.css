@@ -1,0 +1,110 @@
+.todo-card {
+    display: grid;
+    grid-template-columns: auto 9rem;
+    column-gap: 2rem;
+    min-height: 10.3rem;
+    padding: 1.125rem 1.5rem;
+    align-items: center;
+    border-radius: 0.5rem;
+    border-left: 5px solid var(--gray-300, #C8CBD1);
+    background: var(--background-bg-primary, #FFF);
+    box-shadow: 0px 3px 9px 0px rgba(0, 0, 0, 0.15), 0px 2px 28px 0px rgba(0, 0, 0, 0.12)
+}
+
+.todo-card__done {
+    border-left: 5px solid var(--gray-700, #6B7280);
+    background: var(--gray-300, #C8CBD1);
+}
+
+.todo-card * {
+    margin: 0;
+}
+
+/* .todo-card * {
+    outline: 1px solid rgba(255, 0, 0, 20%);
+} */
+
+.todo-card__title {
+    color: var(--secondary-secondary, #23213D);
+
+/* body/bold-18 */
+    font-family: Poppins;
+    font-size: 1.125rem;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 2.125rem; /* 188.889% */
+}
+
+.todo-card__createdAt {
+    color: var(--gray-700, #6B7280);
+    font-size: 0.75rem;
+}
+
+.todo-card__author {
+    color: var(--gray-700, #6B7280);
+    font-size: 0.75rem;
+}
+
+.todo-card__note {
+    color: var(--gray-700, #6B7280);
+    font-size: 0.875rem;
+    margin-top: 0.75rem;
+}
+
+.todo-card__markAsDone {
+    height: 1.5rem;
+    width: 1.9rem;
+    fill: #23213D;
+}
+
+.todo-card__deleteIcon {
+    height: 1.625rem;
+    width: 1.625rem;
+    stroke: #23213D;
+}
+
+.todo-card__message {
+    color: var(--colors-actions-danger, #E12B1B);
+}
+
+.todo-card__markAsDoneIsDone {
+    width: 2.7rem;
+    height: 1.875rem;
+    fill: #07C23B;
+}
+
+.todo-card__aside {
+    color: var(--gray-700, #6B7280);
+    font-size: 0.75rem;
+    user-select: none;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.todo-card__controls {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.todo-card__controls > * {
+    margin: 0.5rem;
+    cursor: pointer;
+}
+
+.todo-card__status {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    row-gap: 0.25rem;
+    min-height: 3.25rem;
+}
+
+.todo-card__markAsDoneError {
+    fill: #E12B1B
+}
+
+.todo-card__deleteError {
+    stroke: #E12B1B
+}

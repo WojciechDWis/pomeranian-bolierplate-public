@@ -1,0 +1,9 @@
+.todo-form__list {
+    max-width: 39.3rem;
+}
+
+.todo-list__containerList {
+    display: flex;
+    flex-direction: column;
+    row-gap:  1.62rem;
+}
