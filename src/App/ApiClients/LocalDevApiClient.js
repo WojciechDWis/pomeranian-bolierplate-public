@@ -18,10 +18,10 @@ export class LocalDevApiClient {
     }
   }
 
-  async getAllToDos() {
+  async getAllToDos(signal = undefined) {
     const requestPath = 'api/todo/';
     const headers = this.#headers;
-    const options = { headers, method: 'GET' };
+    const options = { headers, method: 'GET', signal };
     return this.#useFetch(requestPath, options);
   }
   getToDo(id) {
@@ -50,5 +50,12 @@ export class LocalDevApiClient {
     const options = { headers, method: 'POST', body };
     return this.#useFetch(requestPath, options);
   }
-  updateToDo(id, todo) {}
+  updateToDo(id, todo) {
+    const requestPath = `api/todo/${id}`;
+    const headers = { ...this.#headers, 'Content-Type': 'application/json' };
+    const { title, note, author } = todo;
+    const body = JSON.stringify({ title, note, author });
+    const options = { headers, method: 'PUT', body };
+    return this.#useFetch(requestPath, options);
+  }
 }

@@ -13,10 +13,15 @@ export const ToDoList = ({ handleAddToDo, handleEdit }) => {
   const [isGetListError, setIsGetListError] = useState();
   const [markAsDoneErrors, setMarkAsDoneErrors] = useState([]);
   const [deleteErrors, setDeleteErrors] = useState([]);
+  useEffect(() => {
+    const controller = new AbortController();
+    const promise = apiClient.getAllToDos(controller.signal);
+    updateToDos(promise);
+    return () => controller.abort();
+  }, []);
 
-  const getAllToDos = async () => {
-    apiClient
-      .getAllToDos()
+  const updateToDos = (promise) => {
+    promise
       .then((data) => {
         setTodos(data);
         setIsGetListError(false);
@@ -28,12 +33,9 @@ export const ToDoList = ({ handleAddToDo, handleEdit }) => {
       });
   };
 
-  useEffect(() => {
-    getAllToDos();
-  }, []);
-
   const handleRefresh = () => {
-    getAllToDos();
+    const promise = apiClient.getAllToDos();
+    updateToDos(promise);
   };
 
   const handleMarkAsDone = (id) => {

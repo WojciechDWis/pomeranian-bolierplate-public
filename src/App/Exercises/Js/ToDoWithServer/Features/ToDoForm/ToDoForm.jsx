@@ -16,7 +16,7 @@ export function ToDoForm({ handleGoBack, isAddForm, id }) {
     if (isAddForm) {
       return apiClient.addToDo({ author, note, title });
     } else {
-      return Promise.reject('Not implemented');
+      return apiClient.updateToDo(id, { author, note, title });
     }
   };
 
