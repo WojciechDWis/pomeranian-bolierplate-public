@@ -25,7 +25,7 @@ export class LocalDevApiClient {
     return this.#useFetch(requestPath, options);
   }
   getToDo(id) {
-    const requestPath = 'api/todo/';
+    const requestPath = `api/todo/${id}`;
     const headers = this.#headers;
     const options = { headers, method: 'GET' };
     return this.#useFetch(requestPath, options);
