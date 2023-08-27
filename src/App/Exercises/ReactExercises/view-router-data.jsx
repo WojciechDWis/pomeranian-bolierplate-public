@@ -7,14 +7,18 @@ import { MoreOrLessMetaData } from './MoreOrLess/router-data';
 import { MoreOrLessAdvancedMetaData } from './MoreOrLessAdvanced/router-data';
 import { MUIDashboards } from './MUITemplateDashboard/router-data';
 import { ToDoListMetaData } from './ToDoList/router-data';
+import { BasicFormsMetaData } from './BasicForms/router-data';
+import { BasicFormsExampleMetaData } from './BasicFormsExample/router-data';
 
 export const blockRouterMetaData = [
-    Cwiczenie1MetaData,
-    Cwiczenie2MetaData,
-    Cwiczenie3MetaData,
-    MoreOrLessMetaData,
-    MoreOrLessAdvancedMetaData,
-    MUIDashboards,
-    ToDoListMetaData,
+  Cwiczenie1MetaData,
+  Cwiczenie2MetaData,
+  Cwiczenie3MetaData,
+  MoreOrLessMetaData,
+  MoreOrLessAdvancedMetaData,
+  MUIDashboards,
+  ToDoListMetaData,
+  BasicFormsMetaData,
+  BasicFormsExampleMetaData,
 ];
 export const blockRouterData = getParsedRouterDataList(blockRouterMetaData);
