@@ -9,6 +9,7 @@ import { MUIDashboards } from './MUITemplateDashboard/router-data';
 import { ToDoListMetaData } from './ToDoList/router-data';
 import { BasicFormsMetaData } from './BasicForms/router-data';
 import { BasicFormsExampleMetaData } from './BasicFormsExample/router-data';
+import { FirebaseExampleMetaData } from './FirebaseExample/router-data';
 
 export const blockRouterMetaData = [
   Cwiczenie1MetaData,
@@ -20,5 +21,6 @@ export const blockRouterMetaData = [
   ToDoListMetaData,
   BasicFormsMetaData,
   BasicFormsExampleMetaData,
+  FirebaseExampleMetaData,
 ];
 export const blockRouterData = getParsedRouterDataList(blockRouterMetaData);
