@@ -30,6 +30,7 @@ import { blockRouterMetaData as asyncAwait } from './asyncAwaitExercise/router-d
 import { blockRouterMetaData as LocalDevAndFetch } from './LocalDevAndFetch/router-data';
 import { blockRouterMetaData as ToDoWithServer } from './ToDoWithServer/router-data';
 import { blockRouterMetaData as DOM } from './DOM/router-data';
+import { blockRouterMetaData as Testing } from './Testing/router-data';
 
 export const blockRouterMetaData = [
   blockRouterMetaDataJsVariables1,
@@ -62,5 +63,6 @@ export const blockRouterMetaData = [
   LocalDevAndFetch,
   ToDoWithServer,
   DOM,
+  Testing,
 ];
 export const blockRouterData = getParsedRouterDataList(blockRouterMetaData);

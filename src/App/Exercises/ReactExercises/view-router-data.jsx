@@ -10,6 +10,8 @@ import { ToDoListMetaData } from './ToDoList/router-data';
 import { BasicFormsMetaData } from './BasicForms/router-data';
 import { BasicFormsExampleMetaData } from './BasicFormsExample/router-data';
 import { FirebaseExampleMetaData } from './FirebaseExample/router-data';
+import { ReduxTestMetaData } from './ReduxTest/router-data';
+import { ReduxCounterMetaData } from './ReduxCounter/router-data';
 
 export const blockRouterMetaData = [
   Cwiczenie1MetaData,
@@ -22,5 +24,7 @@ export const blockRouterMetaData = [
   BasicFormsMetaData,
   BasicFormsExampleMetaData,
   FirebaseExampleMetaData,
+  ReduxTestMetaData,
+  ReduxCounterMetaData,
 ];
 export const blockRouterData = getParsedRouterDataList(blockRouterMetaData);
