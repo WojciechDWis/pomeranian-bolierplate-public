@@ -10,42 +10,55 @@ import { MessageIcon } from '../Components/Icons/MessageIcon';
 
 import './styles/aside.css';
 
-export function AppAside() {
+export function AppAside({ visible }) {
   return (
-    <aside>
+    <aside className={visible ? 'aside-visible' : ''}>
       <nav>
         <ul>
           <li>
-            <HouseIcon className="icon" />
-            <NavLink to="dashboard">Dashboard</NavLink>
+            <NavLink to="dashboard">
+              <HouseIcon className="icon" />
+              Dashboard
+            </NavLink>
           </li>
           <li>
-            <ElementIcon className="icon" />
-            <NavLink to="blocks">Bloki</NavLink>
+            <NavLink to="blocks">
+              <ElementIcon className="icon" />
+              Bloki
+            </NavLink>
           </li>
           <li>
-            <EditIcon className="icon" />
-            <NavLink to="exercises">Ćwiczenia</NavLink>
+            <NavLink to="exercises">
+              <EditIcon className="icon" />
+              Ćwiczenia
+            </NavLink>
           </li>
           <li>
-            <PersonalCardIcon className="icon" />
-            <NavLink to="CV">Moje CV</NavLink>
+            <NavLink to="CV">
+              <PersonalCardIcon className="icon" />
+              Moje CV
+            </NavLink>
           </li>
           <li>
-            <CalendarIcon className="icon" />
-            <NavLink to="Calendar">Kalendarz</NavLink>
+            <NavLink to="Calendar">
+              <CalendarIcon className="icon" />
+              Kalendarz
+            </NavLink>
           </li>
           <li>
-            <BookIcon className="icon" />
-            <NavLink to="Blog">Blog</NavLink>
+            <NavLink to="Blog">
+              <BookIcon className="icon" />
+              Blog
+            </NavLink>
           </li>
           <li>
-            <MessageIcon className="icon" />
-            <NavLink to="FAQ">FAQ</NavLink>
+            <NavLink to="FAQ">
+              <MessageIcon className="icon" />
+              FAQ
+            </NavLink>
           </li>
         </ul>
       </nav>
-      <p style={{ padding: '1rem 0' }}>Sidebar items, widgets, etc</p>
     </aside>
   );
 }

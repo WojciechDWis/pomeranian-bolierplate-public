@@ -1,10 +1,10 @@
 .layout {
   display: grid;
   width: 100vw;
-  height: 100vh;
+  min-height: 100vh;
 
   grid-template-columns: 10rem 1fr;
-  grid-template-rows: 5rem 4fr 5rem;
+  grid-template-rows: 5rem 1fr auto;
   grid-template-areas:
     'header header'
     'sidebar main'
@@ -14,9 +14,18 @@
   color: var(--color-grey);
 }
 
+@media only screen and (max-width: 50rem) {
+  .layout {
+    grid-template-areas:
+    'header header'
+    'main main'
+    'footer footer';
+  }
+}
+
 main {
   grid-area: main;
-  height: calc(100vh - 5rem - 5rem);
+  /* height: calc(100vh - 5rem - 5rem); */
   overflow-y: auto;
   display: flex;
   flex-direction: column;

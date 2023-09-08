@@ -19,6 +19,25 @@ header.header-title {
 }
 
 header .logo {
-  height: 40vmin;
+  height: 3.5rem;
   pointer-events: none;
+}
+
+.header-button {
+  display: none;
+  border: none;
+  background: none;
+  cursor: pointer;
+}
+
+@media only screen and (max-width: 50rem) {
+  header div.images-container {
+    display: none;
+  }
+  .header-button {
+    display: block;
+  }
+  header .logo {
+    height: 2.5rem;
+  }
 }

@@ -7,7 +7,7 @@
     background-size: 11rem;
     border-radius: 50%;
     height: 7rem;
-    width: 7rem;
+    max-width: 7rem;
 }
 
 .dashboard-about-me .email-container,

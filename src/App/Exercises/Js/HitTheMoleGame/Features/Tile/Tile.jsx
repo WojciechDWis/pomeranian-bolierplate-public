@@ -1,8 +1,6 @@
 import './styles.css';
 
 export const Tile = ({ hasMole, variant = 'neutral', onClick }) => {
-  // eslint-disable-next-line prettier/prettier
-
   if (
     !(variant === 'correct' || variant === 'incorrect' || variant === 'neutral')
   )

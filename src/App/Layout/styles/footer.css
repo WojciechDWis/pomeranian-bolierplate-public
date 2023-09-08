@@ -1,29 +1,36 @@
 footer {
   grid-area: footer;
   background-color: #000;
-  display: grid;
-  grid-template-columns: 1fr 270px;
+  display: flex;
+  justify-content: space-between;
   position: relative;
   padding: 18px;
 }
 
-footer > * {
+.footer-address > a,
+.footer-content {
   color: var(--color-white);
   text-decoration: none;
   display: flex;
 }
 
-footer .text-up {
-  align-items: flex-start;
+.footer-address a{
+ justify-content: flex-end;
+ white-space: nowrap;
 }
 
-footer .text-down {
-  align-items: flex-end;
+.footer-address {
+  text-align: right;
 }
 
-footer a{
- text-align: right;
- width: 100%;
- display: block;
+.footer-content {
+  max-width: 45rem;
+}
+
+@media screen and (max-width: 50rem) {
+  footer {
+    flex-direction: column-reverse;
+    row-gap: 1rem;
+  }
 }
 

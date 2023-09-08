@@ -16,7 +16,8 @@
 .dashboard .dashboard-tiles>div {
     margin: 2rem;
     padding: 2rem;
-    width: 15rem;
+    width: 100%;
+    max-width: 15rem;
     height: 15rem;
     border-radius: 8px;
     border: 1px solid #c8cbd1;

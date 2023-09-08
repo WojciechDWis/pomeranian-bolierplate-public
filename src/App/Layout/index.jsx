@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Outlet } from 'react-router-dom';
 
 import { AppHeader } from './AppHeader';
@@ -12,13 +12,13 @@ import { AppAside } from './AppAside';
 function getLayoutClassName(withSidebar) {
   return withSidebar ? 'layout with-sidebar' : 'layout';
 }
-
 export const Layout = ({ withSidebar }) => {
+  const [isAsideVisible, setIsAsideVisible] = useState(false);
   return (
     <ErrorBoundary>
       <div className={getLayoutClassName(withSidebar)}>
-        <AppHeader />
-        {withSidebar && <AppAside />}
+        <AppHeader handleVisible={() => setIsAsideVisible(!isAsideVisible)} />
+        {withSidebar && <AppAside visible={isAsideVisible} />}
         <main>
           <Outlet />
         </main>
